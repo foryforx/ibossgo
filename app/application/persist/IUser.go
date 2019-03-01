@@ -1,7 +1,7 @@
 package persist
 
 import (
-	"github.com/karuppaiah/ibossgo/app/application/persist/models"
+	"github.com/karuppaiah/ibossgo/app/domain/models"
 )
 
 // IUserPersistance is the list of ports allowed to be accessed by persistance layer

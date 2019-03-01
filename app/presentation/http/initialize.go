@@ -1,11 +1,19 @@
 package http
 
 import (
-	"github.com/jinzhu/gorm"
 	"github.com/karuppaiah/ibossgo/app/application/presentation"
 )
 
-// NewUserPresentation To create new Repository with connection to Postgres
-func NewUserPresentation(conn *gorm.DB) presentation.IUserPresentation {
-	return &User{conn}
+// UserHandler is the collection of all injection
+type UserHandler struct {
+	UserApplication presentation.IUserPresentation
+}
+
+// NewUserHandler will create new handler with all initialized
+func NewUserHandler(
+	userApp presentation.IUserPresentation,
+) *UserHandler {
+	return &UserHandler{
+		UserApplication: userApp,
+	}
 }

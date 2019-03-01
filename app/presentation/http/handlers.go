@@ -112,15 +112,10 @@ func (h *UserHandler) AuthHandler(c *gin.Context) {
 		return
 	}
 	seen := false
-	if _, err = h.userDB.LoadUserByEmail(u.Email); err == nil {
-		seen = true
-	} else {
-		err = h.userDB.SaveUser(&u)
-		if err != nil {
-			log.Errorln(err)
-			c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{"message": "Error while saving user. Please try again."})
-			return
-		}
+	seen, err = h.UserApplication.AuthUser(&u)
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "error.tmpl", gin.H{"message": "Error while saving user. Please try again."})
+		return
 	}
 	link := getLogoutURL()
 	c.HTML(http.StatusOK, "battle.tmpl", gin.H{"email": u.Email, "seen": seen, "link": link})

@@ -3,6 +3,8 @@ package main
 import (
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"github.com/karuppaiah/ibossgo/app/application"
+	"github.com/karuppaiah/ibossgo/app/persistance"
 	"github.com/karuppaiah/ibossgo/app/presentation/http"
 	"github.com/karuppaiah/ibossgo/config"
 	"github.com/karuppaiah/ibossgo/connection"
@@ -19,20 +21,27 @@ func init() {
 		isProduction = true
 	}
 }
+func init() {
+
+}
 
 func main() {
 	// Creating global configuration object
 	configuration := config.GetConfiguration(isProduction)
 	configuration.Print()
 
+	// Dependency injection
 	// GORM connection
 	db, dbErr := connection.NewORMConn(configuration)
 	if dbErr != nil {
 		log.Fatalf("Error creating connType with ORM: %v", dbErr)
 	}
 	defer db.Close()
+	userPersistance := persistance.NewUserStore(db)
+	userApplication := application.NewUserApplication(userPersistance)
+	userHandler := http.NewUserHandler(userApplication)
 
-	userHandler := http.NewUserHandler(db)
+	// router setup
 	router := gin.Default()
 	store := sessions.NewCookieStore([]byte(http.RandToken(64)))
 	store.Options(sessions.Options{
