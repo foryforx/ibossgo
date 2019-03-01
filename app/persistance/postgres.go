@@ -1,15 +1,15 @@
-package repository
+package persistance
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/karuppaiah/ibossgo/app/models"
+	"github.com/karuppaiah/ibossgo/app/domain/models"
 	"github.com/pkg/errors"
 	// log "github.com/sirupsen/logrus" // commented for easy toggle
 	// "strconv" // commented for easy toggle
 	// "strings" // commented for easy toggle
 )
 
-// Postgres with Connection to DB
+// User with Connection to DB
 type User struct {
 	Conn *gorm.DB
 }

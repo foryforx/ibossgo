@@ -2,21 +2,20 @@ package http
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/karuppaiah/ibossgo/app/user"
+	"github.com/karuppaiah/ibossgo/app/application/presentation"
+	"github.com/karuppaiah/ibossgo/app/persistance"
 )
 
 // UserHandler is the collection of all injection
 type UserHandler struct {
-	userDB user.User
+	userApplication presentation.IUserPresentation
 }
 
 // NewUserHandler will create new handler with all initialized
 func NewUserHandler(
-	dbConn *gorm.DB,
+	userApp presentation.IUserPresentation
 ) *UserHandler {
-	// DB initialization
-	dbPort := user.NewUserRepo(dbConn)
 	return &UserHandler{
-		userDB: dbPort,
+		userApplication: userApp,
 	}
 }

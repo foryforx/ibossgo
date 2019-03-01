@@ -7,7 +7,17 @@ Got kick start from (https://github.com/Skarlso/goprogressquest).
 Simply `go get github.com/karuppaiah/golang-oauth-postgres-clean-architecture`.
 
 # Setup
-
+export ENV=development
+export DATABASE_URL=postgres://postgres@localhost:5432/ibossgo?sslmode=disable
+### Postgres ###
+export PGHOST=localhost
+export PGPORT=5432
+export PGDATABASE=ibossgo
+export PGUSER=postgres
+export PGPASSWORD=
+export PGSSLMODE=disable
+export BASE_URL=localhost:9090
+export BASE_PROTOCOL=http
 ## Google
 
 In order for the Google Authentication to work, you'll need developer credentials which the this application gathers from a file in the root directory called `creds.json`. The structure of this file should be like this:

@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
-	"github.com/karuppaiah/ibossgo/app/delivery/http"
+	"github.com/karuppaiah/ibossgo/app/presentation/http"
 	"github.com/karuppaiah/ibossgo/config"
 	"github.com/karuppaiah/ibossgo/connection"
 	"github.com/karuppaiah/ibossgo/middleware"
@@ -31,6 +31,7 @@ func main() {
 		log.Fatalf("Error creating connType with ORM: %v", dbErr)
 	}
 	defer db.Close()
+
 	userHandler := http.NewUserHandler(db)
 	router := gin.Default()
 	store := sessions.NewCookieStore([]byte(http.RandToken(64)))

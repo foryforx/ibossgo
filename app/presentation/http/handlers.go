@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
-	"github.com/karuppaiah/ibossgo/app/models"
+	"github.com/karuppaiah/ibossgo/app/domain/models"
 	log "github.com/sirupsen/logrus"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"

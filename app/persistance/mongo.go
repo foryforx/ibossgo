@@ -1,9 +1,9 @@
-package repository
+package persistance
 
 import (
 	"fmt"
 
-	"github.com/karuppaiah/ibossgo/app/models"
+	"github.com/karuppaiah/ibossgo/app/domain/models"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
